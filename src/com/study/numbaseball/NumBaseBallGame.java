@@ -1,4 +1,4 @@
-package com.ensof.numbaseball;
+package com.study.numbaseball;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

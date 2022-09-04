@@ -1,4 +1,4 @@
-package com.ensof.numbaseball;
+package com.study.numbaseball;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
