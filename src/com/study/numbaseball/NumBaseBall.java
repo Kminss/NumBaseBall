@@ -13,7 +13,7 @@ public class NumBaseBall {
         numBalls = new int[3];
     }
 
-    public NumBaseBall(int length)  {
+    public NumBaseBall(int length) {
         boolean check = validateLength(length);
         if (!check) {
             throw new IllegalArgumentException("3이상 9이하 외의 값으로 설정 시 기본 값으로 세팅됩니다.");
@@ -55,11 +55,11 @@ public class NumBaseBall {
     //Strike Count 체크
     private boolean isStrike(int answer, int index) {
         int ballIndex = IntStream.range(0, numBalls.length).
-                filter(idx -> answer == numBalls[idx] && idx == index).
+                filter(idx -> answer == numBalls[idx] && index == idx).
                 findFirst().orElse(-1);
 
-        //answer,index 값이 numBall 의 value,index 모두 같은 경우 true return
-        return ballIndex == index;
+        //strike인 값이 없으면 -1 반환 하므로 -1과 비교
+        return ballIndex != -1;
     }
 
     //정답 체크
@@ -79,13 +79,16 @@ public class NumBaseBall {
             }
         }
 
-        if(strikeCount > 0) {
+        if (strikeCount == 0 && ballCount == 0) {
+            sb.append("nothing..");
+        }
+        if (strikeCount > 0) {
             sb.append(strikeCount).append("S ");
         }
-        if(ballCount > 0 ) {
+        if (ballCount > 0) {
             sb.append(ballCount).append("B ");
         }
-        if(strikeCount == numBalls.length) {
+        if (strikeCount == numBalls.length) {
             sb.append("DONE");
         }
         return sb.toString();
