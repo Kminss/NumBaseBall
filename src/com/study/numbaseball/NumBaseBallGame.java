@@ -45,17 +45,20 @@ public class NumBaseBallGame {
             System.out.print("정답 입력>");
             int[] input;
             try {
-                String answers = sc.nextLine().trim();
+                String answers = sc.nextLine();
                 // input = Stream.of(String.valueOf(num).split("")).mapToInt(Integer::parseInt).toArray();
                 input = Stream.of(answers.split("")).mapToInt(Integer::parseInt).toArray();
                 if (answerLength != input.length) {
                     throw new InputMismatchException();
                 }
+            } catch (NumberFormatException e) {
+                System.out.println("숫자로 입력해주세요!");
+                continue;
             } catch (InputMismatchException e) {
-                System.out.println("다시 입력해주세요!");
-                sc.nextLine();
+                System.out.println("자리수 맞춰서 다시 입력해주세요!");
                 continue;
             }
+
             String result = numbaseBall.makeScore(input);
             if (result.endsWith(DONE_MESSAGE)) {
                 System.out.println("정답입니다.");
